@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Coffeepedia</title>
+  </head>
+  <body>
+    <h1>Coffeepedia</h1>
+    {% if bean_list %}
+      <ul>
+      {% for bean in bean_list %}
+        <li><a href="{% url 'beans:detail' question.id %}">{{ bean.name }}</a></li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p>No beans are available.</p>
+    {% endif %}
+  </body>
+</html>
+
