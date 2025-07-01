@@ -6,12 +6,13 @@ from cities_light.models import City, Region, Country
 # Create your models here.
 class Roaster(models.Model):
     name = models.CharField(max_length=100)
-    city = models.ForeignKey(City, on_delete=models.CASCADE, name="city")
-    region = models.ForeignKey(Region, on_delete=models.CASCADE, name="region")
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, name="country")
-    rating = models.DecimalField(decimal_places=2, max_digits=3, 
-                                 validators=[MinValueValidator(1), 
-                                             MaxValueValidator(5)])
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, name="country", default="United States")
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, name="region", blank=True, null=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, name="city", blank=True, null=True)
+    website = models.URLField(max_length=200, blank=True)
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Bean(models.Model):
@@ -47,7 +48,7 @@ class Bean(models.Model):
     }
 
     name = models.CharField(max_length=100)
-    roastery = models.ForeignKey(Roaster, on_delete=models.CASCADE)
+    roaster = models.ForeignKey(Roaster, on_delete=models.CASCADE)
     roast_level = models.CharField(
         max_length=2,
         choices=ROAST_LEVEL_CHOICES,
@@ -66,15 +67,12 @@ class Bean(models.Model):
     )
     producer = models.CharField(max_length=50)
     notes = models.CharField(max_length=100)
-    rating = models.PositiveIntegerField(validators=[MinValueValidator(1),
-                                                     MaxValueValidator(5)])
 
     def __str__(self):
         return f"Name: {self.name}\n \
-                 roastery: {self.roastery}\n \
+                 roastery: {self.roaster}\n \
                  roast level: {self.roast_level}\n \
                  origin: {self.origin}\n \
                  process: {self.process}\n \
                  producer: {self.producer}\n \
-                 notes: {self.notes}\n \
-                 rating: {self.rating}"
+                 notes: {self.notes}"

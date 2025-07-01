@@ -1,0 +1,5 @@
+<form hx-post="{% url 'beans:add_beans' %}" hx-target="#beans-list" hx-swap="innerHTML">
+    {% csrf_token %}
+    {{ beans_form }}
+    <button type="submit">Add Beans</button>
+</form>
