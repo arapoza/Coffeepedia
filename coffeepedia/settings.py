@@ -31,7 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "core.apps.CoreConfig",
     "beans.apps.BeansConfig",
+    "roaster.apps.RoasterConfig",
     "cities_light",
     "django.contrib.admin",
     "django.contrib.auth",

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js" integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm" crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <title>Coffeepedia</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Coffeepedia</h1>
+      <p>Welcome to Coffeepedia, your source for coffee bean information!</p>
+    </div>
+    <div id="navigation">
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'beans:index' %}" hx-get="{% url 'beans:index' %}" hx-target="#page-content" hx-replace-url="true">Beans</a></li>
+          <li><a href="{% url 'roaster:index' %}" hx-get="{% url 'roaster:index' %}" hx-target="#page-content" hx-replace-url="true">Roasters</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div id="page-content">
+    </div>
+  </body>
+</html>
+

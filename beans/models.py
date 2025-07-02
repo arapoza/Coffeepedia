@@ -1,51 +1,38 @@
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
-from cities_light.models import City, Region, Country
-
+from roaster.models import Roaster
 
 # Create your models here.
-class Roaster(models.Model):
-    name = models.CharField(max_length=100)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, name="country", default="United States")
-    region = models.ForeignKey(Region, on_delete=models.CASCADE, name="region", blank=True, null=True)
-    city = models.ForeignKey(City, on_delete=models.CASCADE, name="city", blank=True, null=True)
-    website = models.URLField(max_length=200, blank=True)
-
-    def __str__(self):
-        return f"{self.name}"
-
-
 class Bean(models.Model):
     LIGHT = "L"
     LIGHT_MEDIUM = "LM"
     MEDIUM = "M"
     MEDIUM_DARK = "MD"
     DARK = "D"
-    ROAST_LEVEL_CHOICES = {
+    ROAST_LEVEL_CHOICES = [
         (LIGHT, "Light"),
         (LIGHT_MEDIUM, "Light-Medium"),
         (MEDIUM, "Medium"),
         (MEDIUM_DARK, "Medium-Dark"),
         (DARK, "Dark"),
-    }
+    ]
 
     WASHED = "W"
     NATURAL = "N"
     HONEY = "H"
     CROSS_FERMENTED = "CF"
-    PROCESS_CHOICES = {
+    PROCESS_CHOICES = [
         (WASHED, "Washed"),
         (NATURAL, "Natural"),
         (HONEY, "Honey"),
         (CROSS_FERMENTED, "Cross fermented"),
-    }
+    ]
 
     BLEND = "B"
     SINGLE_ORIGIN = "SO"
-    ORIGIN_TYPE_CHOICES = {
+    ORIGIN_TYPE_CHOICES = [
         (BLEND, "Blend"),
         (SINGLE_ORIGIN, "Single origin"),
-    }
+    ]
 
     name = models.CharField(max_length=100)
     roaster = models.ForeignKey(Roaster, on_delete=models.CASCADE)

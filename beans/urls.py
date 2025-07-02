@@ -4,8 +4,7 @@ from . import views
 
 app_name = "beans"
 urlpatterns = [
-        path("", views.index, name="index"),
-        path("<int:bean_id>", views.detail, name="detail"),
+        path("", views.IndexView.as_view(), name="index"),
+        path("<int:pk>", views.DetailView.as_view(), name="detail"),
         path("add-beans", views.add_beans, name="add_beans"),
-        path("add-roaster", views.add_roaster, name="add_roaster"),
 ]

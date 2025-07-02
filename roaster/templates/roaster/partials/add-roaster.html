@@ -1,0 +1,25 @@
+<form hx-post="{% url 'roaster:add_roaster' %}">
+    {% csrf_token %}
+    <ul>
+        <p>Name: {{ roaster_form.name }}</p>
+        <h4>Location</h4>
+        <p>Country: {{ roaster_form.country }}</p>
+
+        <div
+            id="region-field"
+            hx-get="{% url 'roaster:region_dropdown' %}"
+            hx-trigger="change from:#id_country"
+            hx-include="closest form"
+        >
+            <label for="{{ roaster_form.region.id_for_label }}">Region:</label>
+            {{ roaster_form.region }}
+        </div>
+    
+        <div id="city-field">
+            <p>City: {{ roaster_form.city }}</p>
+        </div>
+
+        <p>Website URL: {{ roaster_form.website }}</p>
+    </ul>
+    <button type="submit">Submit</button>
+</form>

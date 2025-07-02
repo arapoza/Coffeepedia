@@ -1,5 +1,21 @@
 <form hx-post="{% url 'beans:add_beans' %}" hx-target="#beans-list" hx-swap="innerHTML">
     {% csrf_token %}
-    {{ beans_form }}
-    <button type="submit">Add Beans</button>
+    <p>Name: {{ beans_form.name }}</p>
+    <label for="id_roaster">Roaster:</label>
+    {{ beans_form.roaster }}
+
+    <label for="id_roast_level">Roast Level:</label>
+    {{ beans_form.roast_level }}
+
+    <label for="id_process">Process:</label>
+    {{ beans_form.process }}
+
+    <label for="id_origin_type">Origin Type:</label>
+    {{ beans_form.origin_type }}
+    
+    <p>Origin: {{ beans_form.origin }}</p>
+
+    <p>Producer: {{ beans_form.producer }}</p>
+    <p>Notes: {{ beans_form.notes }}</p>
+    <button type="submit">Submit</button>
 </form>

@@ -1,0 +1,19 @@
+<div id="roaster-list">
+<h2>Roaster List</h2>
+{% if roaster_list %}
+    <ul>
+    {% for roaster in roaster_list %}
+    <li><a href="{% url 'roaster:detail' roaster.id %}" hx-get="{% url 'roaster:detail' roaster.id %}" hx-target="#page-content" hx-swap="innerHTML" hx-replace-url="true">{{ roaster.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No roasters are available.</p>
+{% endif %}
+</div>
+<div id="roaster-button">
+    <button hx-get="{% url 'roaster:add_roaster' %}" hx-target="#add-roaster-form" hx-swap="innerHTML">
+    Add Roaster
+    </button>
+</div>
+<div id="add-roaster-form"></div>
+</div>

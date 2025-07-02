@@ -1,35 +1,19 @@
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js" integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm" crossorigin="anonymous"></script>
-    <meta charset="utf-8" />
-    <title>Coffeepedia</title>
-  </head>
-  <body>
-    <h1>Coffeepedia</h1>
-    <div id="beans-list">
-    {% if bean_list %}
-      <ul>
-      {% for bean in bean_list %}
-        <li><a href="{% url 'beans:detail' bean.id %}">{{ bean.name }}</a></li>
-      {% endfor %}
-      </ul>
-    {% else %}
-      <p>No beans are available.</p>
-    {% endif %}
-    </div>
-    <div id="beans-button">
-      <button hx-get="{% url 'beans:add_beans' %}" hx-target="#add-beans-form" hx-swap="innerHTML">
-        Add Beans
-      </button>
-    </div>
-    <div id="roaster-button">
-      <button hx-get="{% url 'beans:add_roaster' %}" hx-target="#add-roaster-form" hx-swap="innerHTML">
-        Add Roaster
-      </button>
-    </div>
-    <div id="add-beans-form"></div>
-    <div id="add-roaster-form"></div>
-  </body>
-</html>
-
+<div id="beans-list">
+<h2>Beans List</h2>
+{% if bean_list %}
+  <ul>
+  {% for bean in bean_list %}
+    <li><a href="{% url 'beans:detail' bean.id %}" hx-get="{% url 'beans:detail' bean.id %}" hx-target="#page-content" hx-swap="innerHTML" hx-replace-url="true">{{ bean.name }}</a></li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No beans are available.</p>
+{% endif %}
+</div>
+<div id="beans-button">
+  <button hx-get="{% url 'beans:add_beans' %}" hx-target="#add-beans-form" hx-swap="innerHTML">
+    Add Beans
+  </button>
+</div>
+<div id="add-beans-form"></div>
+</div>
