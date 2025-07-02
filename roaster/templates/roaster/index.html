@@ -1,9 +1,15 @@
-<div id="roaster-list">
+{% extends "coffeepedia/base.html" %}
+
+{% block title %}
 <h2>Roaster List</h2>
+{% endblock %}
+
+{% block content %}
+<div id="roaster-list">
 {% if roaster_list %}
     <ul>
     {% for roaster in roaster_list %}
-    <li><a href="{% url 'roaster:detail' roaster.id %}" hx-get="{% url 'roaster:detail' roaster.id %}" hx-target="#page-content" hx-swap="innerHTML" hx-replace-url="true">{{ roaster.name }}</a></li>
+    <li><a href="{% url 'roaster:detail' roaster.id %}">{{ roaster.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
@@ -16,4 +22,4 @@
     </button>
 </div>
 <div id="add-roaster-form"></div>
-</div>
+{% endblock %}

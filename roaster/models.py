@@ -4,7 +4,7 @@ from cities_light.models import City, Region, Country
 # Create your models here.
 class Roaster(models.Model):
     name = models.CharField(max_length=100)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, name="country", default=234)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, name="country")
     region = models.ForeignKey(Region, on_delete=models.CASCADE, name="region", blank=True, null=True)
     city = models.ForeignKey(City, on_delete=models.CASCADE, name="city", blank=True, null=True)
     website = models.URLField(max_length=200, blank=True)

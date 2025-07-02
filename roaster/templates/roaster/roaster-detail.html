@@ -1,3 +1,17 @@
+{% extends "coffeepedia/base.html" %}
+
+{% block title %}
 <h2> {{ roaster.name }}</h2>
-<p>Location: {{ roaster.city }}</p>
+{% endblock %}
+
+{% block header %}
+{% block content %}
+{% if roaster.city %}
+    <p>Location: {{ roaster.city }}</p>
+{% else if roaster.region %}
+    <p>Location: {{ roaster.region }}</p>
+{% else %}
+    <p>Location: {{ roaster.country }}</p>
+{% endif %}
 <p>Website: <a href="{{ roaster.website }}">{{ roaster.website }}</a></p>
+{% endblock %}

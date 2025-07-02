@@ -6,13 +6,8 @@ from .models import Roaster
 from .forms import RoasterForm
 
 # Create your views here.
-"""
-def index(request):
-    roaster_list = Roaster.objects.all()
-    context = {"roaster_list": roaster_list}
-    return render(request, "roaster/index.html", context)
-"""
 class IndexView(generic.ListView):
+    """View to display a list of all roasters."""
     template_name = "roaster/index.html"
     context_object_name = "roaster_list"
 
@@ -20,10 +15,12 @@ class IndexView(generic.ListView):
         return Roaster.objects.all()
 
 class DetailView(generic.DetailView):
+    """View to display the details of a specific roaster."""
     model = Roaster
     template_name = "roaster/roaster-detail.html"
 
 def add_roaster(request):
+    """View to handle adding new roasters via a ModelForm."""
     if request.method == "POST":
         country_id = request.POST.get("country")
         region_id = request.POST.get("region")
@@ -39,11 +36,15 @@ def add_roaster(request):
                       {"roaster_form": RoasterForm()})
 
 def region_dropdown(request):
+    """View to handle dynamic loading of the regions dropdown 
+    in the RoasterForm based on selected country."""
     country_id = request.GET.get('country')
     form = RoasterForm(request.GET or None, country_id=country_id)
     return render(request, "roaster/partials/region-dropdown.html", {"form": form})
 
 def city_dropdown(request):
+    """View to handle dynamic loading of the cities dropdown 
+    in the RoasterForm based on selected region."""
     country_id = request.GET.get('country')
     region_id = request.GET.get('region')
     form = RoasterForm(request.GET or None, country_id=country_id,
