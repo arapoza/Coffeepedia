@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block content %}
-<p>Roaster: {{ bean.roaster.name }}</p>
-<p>Roast Level: {{ bean.get_roast_level_display }}</p>
-<p>Origin Type: {{ bean.get_origin_type_display }}</p>
-<p>Origin: {{ bean.origin }}</p>
-<p>Process: {{ bean.get_process_display }}</p>
-<p>Flavor Notes: {{ bean.notes }}</p>
+<ul class="detail-list">
+    <li>Roaster: {{ bean.roaster.name }}</li>
+    <li>Roast Level: {{ bean.get_roast_level_display }}</li>
+    <li>Origin Type: {{ bean.get_origin_type_display }}</li>
+    <li>Origin: {{ bean.origin }}</li>
+    <li>Process: {{ bean.get_process_display }}</li>
+    <li>Flavor Notes: {{ bean.notes }}</li>
+</ul>
 {% endblock %}

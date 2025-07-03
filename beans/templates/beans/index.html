@@ -1,13 +1,13 @@
 {% extends "coffeepedia/base.html" %}
 
 {% block title %}
-<h2>Beans List</h2>
+<h2>All Beans</h2>
 {% endblock %}
 
 {% block content %}
 <div id="beans-list">
 {% if bean_list %}
-  <ul>
+  <ul class="index-list">
   {% for bean in bean_list %}
     <li><a href="{% url 'beans:detail' bean.id %}">{{ bean.roaster.name }}: {{ bean.name }}</a></li>
   {% endfor %}

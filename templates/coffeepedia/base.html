@@ -1,3 +1,6 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'coffeepedia/style.css' %}">
 <!doctype html>
 <html lang="en-US">
   <head>
@@ -7,22 +10,29 @@
   </head>
   <body>
     <div id="header">
-      <a href="{% url 'home' %}" style="color: black; text-decoration: none"><h1>Coffeepedia</h1></a>
-      <p>Welcome to Coffeepedia, your source for coffee bean information!</p>
+      <div id="header-content">
+      <div class="logo-container">
+      <a class="logo" href="{% url 'home' %}"><h1>Coffeepedia</h1></a>
+      </div>
+      <div class="tagline">
+        <p>Welcome to Coffeepedia, your source for coffee bean information!</p>
+      </div>
+      </div>
     </div>
-    <div id="navigation">
-      <nav>
-        <ul>
-          <li><a href="{% url 'home' %}">Home</a></li>
+    <nav class="navbar">
+      <div id="navigation" class="navbar-container">
+        <ul class="nav-links">
           <li><a href="{% url 'beans:index' %}">Beans</a></li>
           <li><a href="{% url 'roaster:index' %}">Roasters</a></li>
         </ul>
       </nav>
     </div>
+    <main>
     {% block title %}
     {% endblock %}
 
     {% block content %}
     {% endblock %}
+    </main>
   </body>
 </html>

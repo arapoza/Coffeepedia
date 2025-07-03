@@ -56,10 +56,4 @@ class Bean(models.Model):
     notes = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"Name: {self.name}\n \
-                 roastery: {self.roaster}\n \
-                 roast level: {self.roast_level}\n \
-                 origin: {self.origin}\n \
-                 process: {self.process}\n \
-                 producer: {self.producer}\n \
-                 notes: {self.notes}"
+        return f"Name: {self.name}\nRoaster: {self.roaster}"

@@ -4,14 +4,16 @@
 <h2> {{ roaster.name }}</h2>
 {% endblock %}
 
-{% block header %}
 {% block content %}
-{% if roaster.city %}
-    <p>Location: {{ roaster.city }}</p>
-{% else if roaster.region %}
-    <p>Location: {{ roaster.region }}</p>
-{% else %}
-    <p>Location: {{ roaster.country }}</p>
-{% endif %}
-<p>Website: <a href="{{ roaster.website }}">{{ roaster.website }}</a></p>
+
+<ul class="detail-list">
+    {% if roaster.city %}
+        <li>Location: {{ roaster.city }}</li>
+    {% elif roaster.region %}
+        <li>Location: {{ roaster.region }}</li>
+    {% else %}
+        <li>Location: {{ roaster.country }}</li>
+    {% endif %}
+    <li>Website: <a href="{{ roaster.website }}">{{ roaster.website }}</li>
+</ul>
 {% endblock %}

@@ -1,0 +1,115 @@
+/* styles.css */
+
+/* Reset (basic) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+  background-color: #f8f9fa;
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: #6f4e37;
+  padding: 1rem 0;
+  color: white;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #6f4e37;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #ffcca7;
+}
+
+/* Responsive (Mobile) */
+@media (max-width: 600px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+.logo-container {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 10px;
+  padding: 7px 0;
+}
+
+.tagline {
+  display: inline-block;
+  margin: 1px 0 0 1px;
+  vertical-align: middle;
+  position: relative;
+  text-align: center;
+  text-wrap: wrap;
+}
+
+.header {
+  padding: 15px 0;
+  background-color: #ffffff;
+  overflow: hidden;
+  height: 44px;
+}
+
+main {
+  margin: 0 auto;
+  padding: 1rem 3rem; 
+}
+
+.detail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.index-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.index-list li {
+    margin: 0.25rem 0;
+}
+
+.index-list a {
+  color: black;
+  text-decoration: none;
+}
+
+.index-list a:hover {
+  text-decoration: underline;
+}
