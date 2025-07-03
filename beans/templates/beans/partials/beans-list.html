@@ -1,0 +1,20 @@
+<div id="beans-list">
+{% if bean_list %}
+  <ul class="index-list">
+  {% for bean in bean_list %}
+    {% if bean.image %}
+      <li>
+        <a href="{% url 'beans:detail' bean.id %}">
+          <img class="bean-image" src="{{ bean.image.url }}" alt="{{ bean.name }}">
+          <p><b>{{ bean.name }}</b><br> {{ bean.roaster.name }}</p>
+        </a>
+      </li>
+    {% else %}
+      <li><a href="{% url 'beans:detail' bean.id %}">{{ bean.roaster.name }}: {{ bean.name }}</a></li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No beans are available.</p>
+{% endif %}
+</div>

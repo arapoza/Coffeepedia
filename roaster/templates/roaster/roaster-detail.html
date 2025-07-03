@@ -14,6 +14,7 @@
     {% else %}
         <li>Location: {{ roaster.country }}</li>
     {% endif %}
-    <li>Website: <a href="{{ roaster.website }}">{{ roaster.website }}</li>
+    <li>Number of Beans: {{ roaster.get_number_of_beans }}</li>
+    <li>Website: <a href="{{ roaster.website }}">{{ roaster.website }}</a></li>
 </ul>
 {% endblock %}

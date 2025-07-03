@@ -11,3 +11,7 @@ class Roaster(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+    def get_number_of_beans(self):
+        """Returns the number of beans associated with this roaster."""
+        return self.beans.count()

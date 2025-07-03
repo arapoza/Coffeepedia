@@ -23,10 +23,11 @@ def add_beans(request):
     """View to handle adding new beans via a ModelForm."""
     # If the request is a POST, process the form data
     if request.method == "POST":
-        beans_form = BeanForm(request.POST)
+        beans_form = BeanForm(request.POST, request.FILES)
         if beans_form.is_valid():
             beans_form.save()
-            return HttpResponse("Beans added successfully!")
+            return render(request, "beans/partials/beans-list.html", 
+                          {"bean_list": Bean.objects.all()})
         else:
             return render(request, "beans/partials/add-beans.html", 
                           {"beans_form": beans_form})

@@ -5,17 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="beans-list">
-{% if bean_list %}
-  <ul class="index-list">
-  {% for bean in bean_list %}
-    <li><a href="{% url 'beans:detail' bean.id %}">{{ bean.roaster.name }}: {{ bean.name }}</a></li>
-  {% endfor %}
-  </ul>
-{% else %}
-  <p>No beans are available.</p>
-{% endif %}
-</div>
+{% include "beans/partials/beans-list.html" %}
 <div id="beans-button">
   <button hx-get="{% url 'beans:add_beans' %}" hx-target="#add-beans-form" hx-swap="innerHTML">
     Add Beans

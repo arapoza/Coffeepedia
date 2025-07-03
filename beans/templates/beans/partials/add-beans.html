@@ -1,4 +1,4 @@
-<form hx-post="{% url 'beans:add_beans' %}" hx-target="#beans-list" hx-swap="innerHTML">
+<form hx-post="{% url 'beans:add_beans' %}" hx-target="#beans-list" hx-swap="innerHTML" enctype="multipart/form-data">
     {% csrf_token %}
     <p>Name: {{ beans_form.name }}</p>
     <label for="id_roaster">Roaster:</label>
@@ -17,5 +17,6 @@
 
     <p>Producer: {{ beans_form.producer }}</p>
     <p>Notes: {{ beans_form.notes }}</p>
+    <p>Image: {{ beans_form.image }}</p>
     <button type="submit">Submit</button>
 </form>

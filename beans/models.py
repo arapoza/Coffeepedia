@@ -35,7 +35,7 @@ class Bean(models.Model):
     ]
 
     name = models.CharField(max_length=100)
-    roaster = models.ForeignKey(Roaster, on_delete=models.CASCADE)
+    roaster = models.ForeignKey(Roaster, on_delete=models.CASCADE, related_name='beans')
     roast_level = models.CharField(
         max_length=2,
         choices=ROAST_LEVEL_CHOICES,
@@ -46,6 +46,7 @@ class Bean(models.Model):
         choices=ORIGIN_TYPE_CHOICES,
         default=BLEND,
     )
+    # TODO: Add a ForeignKey to the Country model
     origin = models.CharField(max_length=50)
     process = models.CharField(
         max_length=2,
@@ -54,6 +55,7 @@ class Bean(models.Model):
     )
     producer = models.CharField(max_length=50)
     notes = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='beans/images/', blank=True, null=True)
 
     def __str__(self):
         return f"Name: {self.name}\nRoaster: {self.roaster}"
