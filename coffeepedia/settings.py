@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "core.apps.CoreConfig",
+    "users.apps.UsersConfig",
     "beans.apps.BeansConfig",
     "roaster.apps.RoasterConfig",
     "cities_light",
@@ -87,6 +88,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+AUTH_USER_MODEL = 'users.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

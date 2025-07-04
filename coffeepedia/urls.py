@@ -26,5 +26,6 @@ urlpatterns = [
     path("", home, name="home"),
     path("beans/", include("beans.urls")),
     path("roaster/", include("roaster.urls")),
+    path("users/", include("users.urls")),
     path("admin/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
