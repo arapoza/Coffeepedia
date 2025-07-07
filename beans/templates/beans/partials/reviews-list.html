@@ -1,0 +1,12 @@
+<h3>Reviews</h3>
+{% if bean.reviews.all %}
+    <ul>
+        {% for review in bean.reviews.all %}
+            <li>
+                <strong>{{ review.user.username }}:</strong> {{ review.content }} (Rating: {{ review.rating }})
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No reviews yet.</p>
+{% endif %}

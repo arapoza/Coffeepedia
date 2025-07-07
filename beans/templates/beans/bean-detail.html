@@ -13,4 +13,17 @@
     <li>Process: {{ bean.get_process_display }}</li>
     <li>Flavor Notes: {{ bean.notes }}</li>
 </ul>
+<div id="review-button">
+    {% if user.is_authenticated %}
+        <button hx-get="{% url 'beans:add_review' bean.id %}" hx-target="#add-review-form" hx-swap="innerHTML">
+            Add Review
+        </button>
+    {% else %}
+        <p>Please <a href="{% url 'users:login' %}">login</a> to add a review.</p>
+    {% endif %}
+</div>
+<div id="add-review-form"></div>
+<div id="reviews">
+{% include "beans/partials/reviews-list.html" with bean=bean %}
+</div>
 {% endblock %}

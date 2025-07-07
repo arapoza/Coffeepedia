@@ -22,8 +22,18 @@
         <ul class="nav-links">
           <li><a href="{% url 'beans:index' %}">Beans</a></li>
           <li><a href="{% url 'roaster:index' %}">Roasters</a></li>
+          {% if not user.is_authenticated %}
           <li><a href="{% url 'users:signup' %}">Register</a></li>
           <li><a href="{% url 'users:login' %}">Login</a></li>
+          {% else %}
+          <li>
+            <form id="logout-form" method="post" action="{% url 'users:logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="nav-link">Logout</button>
+            </form>
+          </li>
+          <li><p>Welcome, {{ user.username }}</p></li>
+          {% endif %}
         </ul>
       </nav>
     </div>

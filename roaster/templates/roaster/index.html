@@ -16,10 +16,12 @@
     <p>No roasters are available.</p>
 {% endif %}
 </div>
+{% if user.is_authenticated %}
 <div id="roaster-button">
     <button hx-get="{% url 'roaster:add_roaster' %}" hx-target="#add-roaster-form" hx-swap="innerHTML">
     Add Roaster
     </button>
 </div>
 <div id="add-roaster-form"></div>
+{% endif %}
 {% endblock %}

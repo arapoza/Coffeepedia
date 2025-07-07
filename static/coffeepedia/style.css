@@ -56,7 +56,6 @@ header {
   gap: 2rem;
 }
 
-
 .nav-links {
   list-style: none;
   display: flex;
@@ -69,7 +68,21 @@ header {
   transition: color 0.2s ease-in-out;
 }
 
+button.nav-link {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+  font-size: 15.5;
+}
+
 .nav-links a:hover {
+  color: #ffcca7;
+}
+
+button.nav-link:hover {
   color: #ffcca7;
 }
 

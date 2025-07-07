@@ -59,3 +59,11 @@ class Bean(models.Model):
 
     def __str__(self):
         return f"Name: {self.name}\nRoaster: {self.roaster}"
+
+    def get_rating(self):
+        """Calculate the average rating of the bean."""
+        reviews = self.reviews.all()
+        if not reviews:
+            return 0
+        total_rating = sum(review.rating for review in reviews)
+        return total_rating / reviews.count()

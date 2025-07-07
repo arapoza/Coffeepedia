@@ -4,6 +4,7 @@ from django.views import generic
 
 from .models import Bean
 from .forms import BeanForm
+from users.forms import ReviewForm
 
 # Create your views here.
 class IndexView(generic.ListView):
@@ -35,3 +36,20 @@ def add_beans(request):
     else:
         return render(request, "beans/partials/add-beans.html", 
                       {"beans_form": BeanForm()})
+
+def add_review(request, bean_id):
+    """View to handle adding a review for a specific bean."""
+    bean = get_object_or_404(Bean, pk=bean_id)
+    
+    if request.method == "POST":
+        content = request.POST.get("content")
+        rating = request.POST.get("rating")
+        
+        if content and rating:
+            bean.reviews.create(user=request.user, content=content, rating=rating)
+            return render(request, "beans/partials/review-list.html", 
+                          {"reviews": bean.reviews.all()})
+        else:
+            return HttpResponse("Invalid review data", status=400)
+    
+    return render(request, "beans/partials/add-review.html", {"bean": bean, "review_form": ReviewForm()})

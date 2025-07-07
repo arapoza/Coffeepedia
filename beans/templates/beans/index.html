@@ -6,10 +6,12 @@
 
 {% block content %}
 {% include "beans/partials/beans-list.html" %}
+{% if user.is_authenticated %}
 <div id="beans-button">
   <button hx-get="{% url 'beans:add_beans' %}" hx-target="#add-beans-form" hx-swap="innerHTML">
     Add Beans
   </button>
 </div>
 <div id="add-beans-form"></div>
+{% endif %}
 {% endblock %}

@@ -1,0 +1,13 @@
+<form hx-post="{% url 'beans:add_review' bean.id %}" hx-target="#reviews" hx-swap="innerHTML">
+    {% csrf_token %}
+    <h3>Add Review for {{ bean.name }}</h3>
+    <div>
+        <label for="rating">Rating (1-5):</label>
+        {{ review_form.rating }}
+    </div>
+    <div>
+        <label for="content">Review:</label>
+        {{ review_form.content }}
+    </div>
+    <button type="submit">Submit Review</button>
+</form>
