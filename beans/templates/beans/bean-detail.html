@@ -6,6 +6,11 @@
 
 {% block content %}
 <ul class="detail-list">
+    <li>
+        <img class="bean-image" src="{{ bean.image.url }}" alt="{{ bean.name }}">
+    </a>
+    </li>
+    <li>Rating: {{ bean.get_rating }}</li>
     <li>Roaster: {{ bean.roaster.name }}</li>
     <li>Roast Level: {{ bean.get_roast_level_display }}</li>
     <li>Origin Type: {{ bean.get_origin_type_display }}</li>

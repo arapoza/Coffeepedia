@@ -15,3 +15,10 @@ class Roaster(models.Model):
     def get_number_of_beans(self):
         """Returns the number of beans associated with this roaster."""
         return self.beans.count()
+
+    def get_rating(self):
+        """Calculates the average rating of all beans associated with this roaster."""
+        if self.beans.exists():
+            total_rating = sum(bean.get_rating() for bean in self.beans.all())
+            return total_rating / self.get_number_of_beans()
+        return 0

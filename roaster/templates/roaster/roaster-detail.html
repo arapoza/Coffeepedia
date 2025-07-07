@@ -7,6 +7,7 @@
 {% block content %}
 
 <ul class="detail-list">
+    <li>Rating: {{ roaster.get_rating }}</li>
     {% if roaster.city %}
         <li>Location: {{ roaster.city }}</li>
     {% elif roaster.region %}

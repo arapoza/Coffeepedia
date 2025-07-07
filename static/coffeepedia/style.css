@@ -140,3 +140,10 @@ main {
   height: auto;
   flex: initial;
 }
+
+
+.bean-image {
+  max-width: 200px;
+  height: auto;
+  flex: initial;
+}

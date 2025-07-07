@@ -5,6 +5,7 @@ from django.views import generic
 from .models import Bean
 from .forms import BeanForm
 from users.forms import ReviewForm
+from users.models import Review
 
 # Create your views here.
 class IndexView(generic.ListView):
@@ -47,9 +48,38 @@ def add_review(request, bean_id):
         
         if content and rating:
             bean.reviews.create(user=request.user, content=content, rating=rating)
-            return render(request, "beans/partials/review-list.html", 
-                          {"reviews": bean.reviews.all()})
+            return render(request, "beans/partials/reviews-list.html", 
+                          {"reviews": bean.reviews.all(), "bean": bean})
         else:
             return HttpResponse("Invalid review data", status=400)
     
     return render(request, "beans/partials/add-review.html", {"bean": bean, "review_form": ReviewForm()})
+
+def edit_review(request, review_id):
+    """View to handle editing an existing review."""
+    review = get_object_or_404(Review, pk=review_id, user=request.user)
+    
+    if request.method == "POST":
+        review_form = ReviewForm(request.POST, instance=review)
+        if review_form.is_valid():
+            review_form.save()
+            return render(request, "beans/partials/reviews-list.html", 
+                          {"reviews": review.bean.reviews.all(), "bean": review.bean})
+        else:
+            return render(request, "beans/partials/edit-review.html", 
+                          {"review_form": review_form, "review": review})
+    
+    review_form = ReviewForm(instance=review)
+    return render(request, "beans/partials/edit-review.html", {"review_form": review_form, "review": review})
+
+def delete_review(request, review_id):
+    """View to handle deleting an existing review."""
+    review = get_object_or_404(Review, pk=review_id, user=request.user)
+    
+    if request.method == "POST":
+        bean = review.bean
+        review.delete()
+        return render(request, "beans/partials/reviews-list.html", 
+                      {"reviews": bean.reviews.all()})
+    
+    return HttpResponse("Method not allowed", status=405)

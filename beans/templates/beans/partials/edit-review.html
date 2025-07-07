@@ -1,4 +1,4 @@
-<form hx-post="{% url 'beans:add_review' bean.id %}" hx-target="#reviews">
+<form hx-post="{% url 'beans:edit_review' review.id %}" hx-target="#reviews" hx-on="htmx:afterRequest: this.remove()">
     {% csrf_token %}
     <h3>Add Review for {{ bean.name }}</h3>
     <div>
@@ -9,5 +9,5 @@
         <label for="content">Review:</label>
         {{ review_form.content }}
     </div>
-    <button type="submit">Submit Review</button>
+    <button type="submit">Edit Review</button>
 </form>

@@ -4,6 +4,13 @@
         {% for review in bean.reviews.all %}
             <li>
                 <strong>{{ review.user.username }}:</strong> {{ review.content }} (Rating: {{ review.rating }})
+                {% if review.user == user %}
+                    <a href="{% url 'beans:edit_review' review.id %}" hx-get="{% url 'beans:edit_review' review.id %}" hx-target="#add-review-form" hx-swap="innerHTML">Edit</a>
+                    <form hx-post="{% url 'beans:delete_review' review.id %}" hx-target="#reviews" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>

@@ -8,4 +8,6 @@ urlpatterns = [
         path("<int:pk>", views.DetailView.as_view(), name="detail"),
         path("add-beans", views.add_beans, name="add_beans"),
         path("add-review/<int:bean_id>", views.add_review, name="add_review"),
+        path("edit-review/<int:review_id>", views.edit_review, name="edit_review"),
+        path("delete-review/<int:review_id>", views.delete_review, name="delete_review"),
 ]
